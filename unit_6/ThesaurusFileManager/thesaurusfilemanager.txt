@@ -1,0 +1,8 @@
+word,synonym1,synonym2,synonym3
+investigate,inspect,probe,question
+explain,analyse,describe,eludicate
+data,experiments,evidence,compilations
+media,news,publishing,communication
+attend,visit,appear,show up
+catch,grab,pick,clasp
+walk,roam,perambulate,stride
