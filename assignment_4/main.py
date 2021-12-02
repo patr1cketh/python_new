@@ -12,7 +12,8 @@ def control_flow():
             print("Goodbye.")
             quit()
 
-bot_names = ["Billy", "Bob", "Bailey", "Beatrice"] # List of bot names
+# List of bot names
+bot_names = ["Billy", "Bob", "Bailey", "Beatrice", "Barney", "Bart", "Barbara", "Bella", "Benny", "Barry", "Bethany", "Brittany"] 
 
 question_file_reader = QuestionFileReader("question_bank_2.txt") # new instance of QuestionFileReader class
 
@@ -54,14 +55,14 @@ while response not in ["y", "n"]:
         # This loop will run for each question
         for i in range(len(questions_set)):
 
-            # present the option of the score shuffle before the last question
+            # FEATURE 2: present the option of the score shuffle before the last question
             if i == len(questions_set) - 1:
                 question_bot.draw()
                 print("Your current score is %d points" % question_bot.get_score())
                 print("Up until now there was a maximum of 10 points for each correct answer.")
                 print("For the final question, you can take a chance and play the score shuffler.")
                 print("With the score shuffler you can get up to 20 points for the last question!")
-                print("But be careful! You can get a bad shuffle and lower the points too!")
+                print("But be careful! You might get a bad shuffle and lower the points too!")
                 print("Would you like to play the score shuffler? (y/n)\n")
                 response = ""
                 while response not in ["y", "n"]:

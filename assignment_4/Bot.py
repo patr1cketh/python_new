@@ -33,16 +33,19 @@ class Bot:
 
 class QuestionBot(Bot): # QuestionBot is a child class of Bot
     
+    # these are class variables because they will be common acroos all instances of the class
+    __score = 0 # score will always start at 0
+    __question_number = 1 # question_number will always satrt at 1
+    __goodbye_message = "" # goodbye_message will always start as an empty string
+    __percentage = 0 # percentage will always start at 0
+    
     def __init__(self, name, questions):
         # We call __init__() from the parent class and pass it name
         super().__init__(name)
         # We add these instance variables here because they are specific to the child class
-        self.__score = 0 # initialise score to 0
         self.__score_increment = 10 # Initalises the score increment to 10
-        self.__question_number = 1 # Initialises the question number to 1
-        self.__goodbye_message = "" # Initalises goodbye message to an empty string
         self.__questions = questions # Assigns the questions variable passed in to self.__questions
-        self.__percentage = 0 # initailise percentage to 0
+        
     
     # This method will override the __str__() method from the parent class.      
     def __str__(self):
@@ -103,7 +106,7 @@ class QuestionBot(Bot): # QuestionBot is a child class of Bot
         current_q = self.__questions[self.__question_number] # Gets the current question from the questions dictionary
         a = current_q["answers"] # Gets the list of answers
         correct_answer = a[0] # The variable a contains the list of answers and the correct answer is the first item on the list
-        print("Incorrect. The correct answer is %s\n" % correct_answer) 
+        print("Incorrect. The correct answer is: %s\n" % correct_answer) 
 
     # To be called for each question
     def current_question(self):
@@ -112,8 +115,11 @@ class QuestionBot(Bot): # QuestionBot is a child class of Bot
         a = current_q["answers"] # Assigns the list of answers to a
         answers_random = random.sample(a, len(a)) # Randomizes the answers and assigns them to a new list
 
-        #Presents the question and answers to the user
-        q_and_a = "---%s---\n%s\n-----\nA. %s\nB. %s\nC. %s\nD. %s\n-----\nPlease type your answer.\n" % (self.name, q, answers_random[0], answers_random[1], answers_random[2], answers_random[3])
+        # Builds a string to display the quenstion and answers to the user
+        q_and_a = "---%s---\n%s\n-----\n" % (self.name, q)
+        for i in range(len(answers_random)): # allows for any number of possible answers
+            q_and_a += answers_random[i] + "\n"
+        q_and_a += "\n-----\nPlease type your answer.\n"
         return q_and_a
                 
     # To be called each time the user inputs an answer
@@ -221,7 +227,7 @@ class QuestionBot(Bot): # QuestionBot is a child class of Bot
   ((
   """)
         if self.__score_increment > 10:
-            print("Yay! You won the score shuffle and you can score %d points for the final question!" % self.__score_increment)
+            print("Yay! You won the score shuffle and you can now score %d points for the final question!" % self.__score_increment)
         elif self.__score_increment < 10:
             print("Bad luck! You lost the score shuffle now can only get %d points for the final question." % self.__score_increment)
         elif self.__score_increment == 10:

@@ -51,7 +51,8 @@ class FileReader:
         with open(self.filename) as f:
             file_as_string = f.read()
             file_as_list = file_as_string.splitlines(keepends = True)
-            random_as_list = file_as_list[start:end + 1] # use start and end variables to slice the list of questions. +1 to end because we want the end question number to be included
+            # use start and end variables to slice the list of questions. +1 to end because we want the end question number to be included
+            random_as_list = file_as_list[start:end + 1] 
             random_as_string = "".join(random_as_list)
         return random_as_string
 
@@ -64,7 +65,8 @@ class FileReader:
             # nested for loops to compare each item in the list to each line in the file
             for line_num in line_nums_list: # loop through the list of line nums
                 for line in file_as_list: # loop through the list of lines
-                    if line_num == file_as_list.index(line): # check if the line num matches the index of the line. Line numbers will match index number because the 0th index is the header line
+                    # check if the line num matches the index of the line. Line numbers will match index number because the 0th index is the header line
+                    if line_num == file_as_list.index(line):
                         lines_as_string += line # if it is a match, append the line to the return string
         return lines_as_string               
 
